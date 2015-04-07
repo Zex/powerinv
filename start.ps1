@@ -27,9 +27,45 @@ Test-Path variable:johndoe
 #Pop-Location
 }
 
+function utils_new_mount_point($dest)
+{
+    if (!(Test-Path $dest))
+    {
+        New-Item -ItemType directory $dest|%{$_.Attributes="hidden"}
+    }   
+}
+
+function utils_mount($label, $destbase)
+{     
+    $label_filter = "Label='"+$label+"'"
+
+    Get-WmiObject -Class win32_volume -Filter $label_filter|ForEach-Object -Process {
+        
+        $dest = "$destbase"+"\"+$_.Label
+        utils_new_mount_point $dest
+        $_.AddMountPoint($dest)        
+    }
+
+    return $dest
+}
+
+function utils_umount($label, $destbase)
+{ 
+    $label_filter = "Label='"+$label+"'"
+    
+    Get-WmiObject -Class win32_volume -Filter $label_filter|ForEach-Object -Process {
+        
+        $dest = "$destbase"+"\"+$_.Label
+
+        mountvol $dest /d
+        $_.Dismount($TRUE, $FALSE)
+        Remove-Item -path $dest -Force -Recurse
+    }
+}
+
 function begin_with($label, $destdir)
 {
-Get-WmiObject -Class win32_volume|Where-Object {$_.Label -eq $label}|ForEach-Object -Process {$_.AddMountPoint("C:\ps\"+$_.Label)}
+#Get-WmiObject -Class win32_volume|Where-Object {$_.Label -eq $label}|ForEach-Object -Process {$_.AddMountPoint("C:\ps\"+$_.Label)}
 #Start-Process powershell -Verb runAs -ArgumentList "-file .\attr.ps1"
 }
 
