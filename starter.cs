@@ -1,6 +1,7 @@
 /** starter.cs
  *
  * Author: Zex <top_zlynch@yahoo.com>
+ *
  */
 using System;
 using System.Text.RegularExpressions;
@@ -10,6 +11,29 @@ using System.Runtime.InteropServices;
 
 namespace utilities
 {          
+    /*
+     \code
+    {
+        string NamespacePath = "\\\\.\\ROOT\\Microsoft\\Windows\\Storage";
+        string ClassName = "MSFT_Partition";// "MSFT_StorageObject";
+
+        ManagementClass cls = new ManagementClass(NamespacePath + ":" + ClassName);
+        //out string ret = string.Empty;
+
+        Console.WriteLine(cls.InvokeMethod("AddAccessPath", new object[] { 
+            "c:\\port-3", false, out string ret }));
+        // ------------------
+        Console.WriteLine(string.Format("Property Names in {0}: ", ClassName));
+
+        foreach (PropertyData property in cls.Properties)
+        {
+            Console.WriteLine("name: {0}, Value: {1}", property.Name,
+                 cls.GetPropertyValue(property.Name));
+        }
+        // ------------------      
+    }
+    \endcode
+    */
     public class PartitionHelper
     {
         [DllImport("kernel32.dll", SetLastError = true)]
