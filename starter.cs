@@ -11,6 +11,83 @@ using System.Runtime.InteropServices;
 
 namespace utilities
 {          
+/*
+ *    public class DiskPartBlocker
+ *    {
+ *        public const string premount_dp_path = "C:\\premount.dp";
+ *        public const string postmount_dp_path = "C:\\postmount.dp";
+ *
+ *        public static void create_premount(int disk_nr, int part_nr)
+ *        {
+ *            string[] premount = {
+ *                "select disk " + disk_nr.ToString(),
+ *                "select partition " + part_nr.ToString(),
+ *                "",
+ *                "set id=" + PARTITION_BASIC_DATA_GUID 
+ *                };
+ *
+ *            Directory.CreateDirectory(Path.GetDirectoryName(premount_dp_path));
+ *
+ *            using (StreamWriter o = new StreamWriter(premount_dp_path))
+ *            {
+ *                foreach (string line in premount)
+ *                    o.WriteLine(line);
+ *            }
+ *        }
+ *
+ *        public static void create_postmount(int disk_nr, int part_nr)
+ *        {
+ *            string[] postmount = {
+ *                "select disk " + disk_nr.ToString(),
+ *                "select partition " + part_nr.ToString(),
+ *                "",
+ *                "set id=" + OEM_GUID
+ *                };
+ *
+ *            Directory.CreateDirectory(Path.GetDirectoryName(postmount_dp_path));
+ *
+ *            using (StreamWriter o = new StreamWriter(postmount_dp_path))
+ *            {
+ *                foreach (string line in postmount)
+ *                    o.WriteLine(line);
+ *            }
+ *        }
+ *
+ *        public static void to_basic_guid()
+ *        {
+ *            if (!File.Exists(premount_dp_path))
+ *                throw new Exception("Premount script not found");
+ *
+ *            ProcessStartInfo to_basic = new ProcessStartInfo();
+ *            to_basic.FileName = "diskpart";
+ *            to_basic.Arguments = "/s " + premount_dp_path;
+ *
+ *            Process.Start(to_basic).WaitForExit();
+ *        }
+ *
+ *        public static void to_oem_guid()
+ *        {
+ *            if (!File.Exists(postmount_dp_path))
+ *                throw new Exception("Postmount script not found");
+ *
+ *            ProcessStartInfo to_oem = new ProcessStartInfo();
+ *            to_oem.FileName = "diskpart";
+ *            to_oem.Arguments = "/s " + postmount_dp_path;
+ *
+ *            Process.Start(to_oem).WaitForExit();
+ *        }
+ *
+ *        public static void cleanup()
+ *        {
+ *            if (File.Exists(premount_dp_path))
+ *                File.Delete(premount_dp_path);
+ *
+ *            if (File.Exists(postmount_dp_path))
+ *                File.Delete(postmount_dp_path);
+ *        }
+ *    }
+ */
+    
     public class DeviceIOCtrl
     {
         public const int GENERIC_READ = unchecked((int)0x80000000);
