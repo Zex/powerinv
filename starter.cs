@@ -17,38 +17,20 @@ namespace utilities
  *        public const string premount_dp_path = "C:\\premount.dp";
  *        public const string postmount_dp_path = "C:\\postmount.dp";
  *
- *        public static void create_premount(int disk_nr, int part_nr)
+ *        public static void generate_script(int disk_nr, int part_nr, Guid guid, string dp_path)
  *        {
  *            string[] premount = {
  *                "select disk " + disk_nr.ToString(),
  *                "select partition " + part_nr.ToString(),
  *                "",
- *                "set id=" + PARTITION_BASIC_DATA_GUID 
+ *                "set id=" + guid.ToString() + " override"
  *                };
  *
- *            Directory.CreateDirectory(Path.GetDirectoryName(premount_dp_path));
+ *            Directory.CreateDirectory(Path.GetDirectoryName(dp_path));
  *
- *            using (StreamWriter o = new StreamWriter(premount_dp_path))
+ *            using (StreamWriter o = new StreamWriter(dp_path))
  *            {
  *                foreach (string line in premount)
- *                    o.WriteLine(line);
- *            }
- *        }
- *
- *        public static void create_postmount(int disk_nr, int part_nr)
- *        {
- *            string[] postmount = {
- *                "select disk " + disk_nr.ToString(),
- *                "select partition " + part_nr.ToString(),
- *                "",
- *                "set id=" + OEM_GUID
- *                };
- *
- *            Directory.CreateDirectory(Path.GetDirectoryName(postmount_dp_path));
- *
- *            using (StreamWriter o = new StreamWriter(postmount_dp_path))
- *            {
- *                foreach (string line in postmount)
  *                    o.WriteLine(line);
  *            }
  *        }
