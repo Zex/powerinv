@@ -41,11 +41,11 @@ function create_customize_dp($drive_ltr)
 			$part_nr = $p.PartitionNumber
 			if ($part_nr.Lengh -eq 0) { break }
 				
-			echo "select disk $disk_nr" >> $customize_dp
-			echo "select part $part_nr" >> $customize_dp
+			"select disk $disk_nr" |Add-Content -Encoding UTF8 $customize_dp
+			"select part $part_nr" |Add-Content -Encoding UTF8 $customize_dp
 			
 			$need_shrink = disk_check $disk_nr
-			
+
 			if (-1 -eq $need_shrink)
 			{
 				return
@@ -53,13 +53,13 @@ function create_customize_dp($drive_ltr)
 			
 			if (1 -eq $need_shrink)
 			{
-				echo "shrink desired=$customize_min_sz" >> $customize_dp
+				"shrink desired=$customize_min_sz" |Add-Content -Encoding UTF8 $customize_dp
 			}
 			
-			echo "create part primary size=$customize_min_sz" >> $customize_dp
-			echo "format quick fs=fat32 label=CUSTOMIZE" >> $customize_dp
-			echo "gpt attributes=$customize_gpt_attr" >> $customize_dp
-			echo "set id=$customize_gpt_type" >> $customize_dp
+			"create part primary size=$customize_min_sz" |Add-Content -Encoding UTF8 $customize_dp
+			"format quick fs=fat32 label=CUSTOMIZE" |Add-Content -Encoding UTF8 $customize_dp
+			"gpt attributes=$customize_gpt_attr" |Add-Content -Encoding UTF8 $customize_dp
+			"set id=$customize_gpt_type" |Add-Content -Encoding UTF8 $customize_dp
 			break;
 		}
 	}
@@ -89,7 +89,8 @@ function disk_check($disk_nr)
 	}
 }
 
-#disk_check
-echo "" > $customize_dp
+"rem partition helper script"|Set-Content -Encoding UTF8 $customize_dp
 $drive_ltr = find_avail_space
 create_customize_dp $drive_ltr
+diskpart /s $customize_dp
+
