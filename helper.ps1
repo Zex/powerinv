@@ -1,7 +1,9 @@
 # helper.ps1 - Create partition from system partition
 #
 # Author: Zex <top_zlych@yahoo.com>
-#
+# 
+# Run as administrator
+# > powershell -File <path-to-helper.ps1>
 $customize_lb = "CUSTOMIZE"
 $windows_lb = "WINDOWS"
 $customize_min_sz = 1024 # MB
