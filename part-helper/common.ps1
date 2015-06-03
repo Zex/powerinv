@@ -1,9 +1,11 @@
 # common.ps1 - Mount customize partition to diretory
+#
+# Author: Zex <top_zlynch@yahoo.com>
 # powershell -File c:\common.ps1
 #---------------------------------------------------------------------------
 # Common definitions
 $customize_lb = "CUSTOMIZE"
-$windows_lb = "OS"
+$windows_lb = "Windows"
 $basic_data_gpt_type = "ebd0a0a2-b9e5-4433-87c0-68b6b72699c7"
 $outpath = "c:\part-helper\out"
 $out_dp = "$outpath\out.dp"
