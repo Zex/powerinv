@@ -1,4 +1,6 @@
 # mount-customize.ps1 - Mount customize partition to diretory
+# Author: Zex <top_zlynch@yahoo.com>
+#
 # powershell -File <path-to-mount-customize.ps1>
 #---------------------------------------------------------------------------
 . c:\part-helper\common.ps1

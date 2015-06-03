@@ -1,4 +1,6 @@
 # mount-syspart.ps1 - Mount system partition to diretory
+# Author: Zex <top_zlynch@yahoo.com>
+#
 # powershell -File <path-to-mount-syspart.ps1>
 #---------------------------------------------------------------------------
 . c:\part-helper\common.ps1

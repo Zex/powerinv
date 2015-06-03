@@ -1,6 +1,6 @@
 # common.ps1 - Mount customize partition to diretory
-#
 # Author: Zex <top_zlynch@yahoo.com>
+#
 # powershell -File c:\common.ps1
 #---------------------------------------------------------------------------
 # Common definitions
