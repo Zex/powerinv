@@ -1,9 +1,9 @@
 # create-customize.ps1 - Create customize partition in Windows
 # Author: Zex <top_zlynch@yahoo.com>
 #
-# powershell -File <path-to-create-customize.ps1>
+# powershell -ExecutionPolicy Bypass -File <path-to-create-customize.ps1>
 #---------------------------------------------------------------------------
-. c:\part-helper\common.ps1
+. c:\part-helper\ps1\common.ps1
 
 $out_dp = "$outpath\create-customize.dp"
 
