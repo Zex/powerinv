@@ -1,7 +1,10 @@
 # common.ps1 - Mount customize partition to diretory
 # Author: Zex <top_zlynch@yahoo.com>
 #
-# powershell -File c:\common.ps1
+# OPTIONAL SETTING:
+#  powershell -Command {Set-ExecutionPolicy RemoteSigned}
+#
+# powershell -ExecutionPolicy Bypass -File <path-to-common-definitions>
 #---------------------------------------------------------------------------
 # Common definitions
 $customize_lb = "CUSTOMIZE"
