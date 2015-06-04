@@ -49,7 +49,7 @@ function disk_check($disk_nr)
 {
 	$disk = get-disk -Number $disk_nr
 	
-	if ("GPT".Equals($disk.PartitionStyle, 5))
+	if (!"GPT".Equals($disk.PartitionStyle))
 	{
 		return -1
 	}
