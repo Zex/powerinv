@@ -2,6 +2,7 @@
 # Author: Zex <top_zlynch@yahoo.com>
 #
 # powershell -ExecutionPolicy Bypass -File <path-to-mount-syspart.ps1>
+# powershell -ExecutionPolicy Bypass -File <path-to-umount-syspart.ps1>
 #---------------------------------------------------------------------------
 . c:\part-helper\ps1\common.ps1
 
