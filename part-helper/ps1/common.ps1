@@ -83,7 +83,7 @@ function create_customize_dp($drive_ltr)
 			"select disk $disk_nr" |Add-Content -Encoding UTF8 $out_dp
 			"select part $part_nr" |Add-Content -Encoding UTF8 $out_dp
 			
-			$need_shrink = disk_check $disk_nr
+			$need_shrink = 1#disk_check $disk_nr
 			
 			if (-1 -eq $need_shrink)
 			{
@@ -98,8 +98,8 @@ function create_customize_dp($drive_ltr)
 			
 			"create part primary size=$customize_min_sz" |Add-Content -Encoding UTF8 $out_dp
 			"format quick fs=fat32 label=CUSTOMIZE" |Add-Content -Encoding UTF8 $out_dp
-			"set id=$customize_gpt_type" |Add-Content -Encoding UTF8 $out_dp
 			"gpt attributes=$customize_gpt_attr" |Add-Content -Encoding UTF8 $out_dp
+            "set id=$customize_gpt_type override" |Add-Content -Encoding UTF8 $out_dp
 			break;
 		}
 	}
@@ -137,7 +137,7 @@ function create_customize_mount_dp()
 			"# mount-customize.ps1 - Mount customize partition to diretory" |Set-Content -Encoding UTF8 $customize_umount_ps
 			"# powershell -File $customize_umount_ps" |Add-Content -Encoding UTF8 $customize_umount_ps
 			"#---------------------------------------------------------------------------"  |Add-Content -Encoding UTF8 $customize_umount_ps
-			". c:\part-helper\common.ps1" |Add-Content -Encoding UTF8 $customize_umount_ps
+			". c:\part-helper\ps1\common.ps1" |Add-Content -Encoding UTF8 $customize_umount_ps
 			"Remove-PartitionAccessPath -DiskNumber $disk_nr -PartitionNumber $part_nr -AccessPath $customize_mp -ErrorAction Ignore" |Add-Content -Encoding UTF8 $customize_umount_ps
 			"diskpart /s $customize_postmount_dp" |Add-Content -Encoding UTF8 $customize_umount_ps
 			
@@ -178,7 +178,7 @@ function create_syspart_mount_dp()
 			"# mount-syspart.ps1 - Mount system partition to diretory" |Set-Content -Encoding UTF8 $syspart_umount_ps
 			"# powershell -File $syspart_umount_ps" |Add-Content -Encoding UTF8 $syspart_umount_ps
 			"#---------------------------------------------------------------------------" |Add-Content -Encoding UTF8 $syspart_umount_ps
-			". c:\part-helper\common.ps1" |Add-Content -Encoding UTF8 $syspart_umount_ps
+			". c:\part-helper\ps1\common.ps1" |Add-Content -Encoding UTF8 $syspart_umount_ps
 			"Remove-PartitionAccessPath -DiskNumber $disk_nr -PartitionNumber $part_nr -AccessPath $syspart_mp -ErrorAction Ignore" |Add-Content -Encoding UTF8 $syspart_umount_ps
 			"diskpart /s $syspart_postmount_dp" |Add-Content -Encoding UTF8 $syspart_umount_ps
 			
