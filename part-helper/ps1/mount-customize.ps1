@@ -2,6 +2,7 @@
 # Author: Zex <top_zlynch@yahoo.com>
 #
 # powershell -ExecutionPolicy Bypass -File <path-to-mount-customize.ps1>
+# powershell -ExecutionPolicy Bypass -File <path-to-umount-customize.ps1>
 #---------------------------------------------------------------------------
 . c:\part-helper\ps1\common.ps1
 
