@@ -15,7 +15,7 @@ namespace sysinfo
             Console.WriteLine("---------------------------------------");
 
             Microsoft.Win32.RegistryKey rkey =
-                Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Google");
+                Microsoft.Win32.Registry.LocalMachine.OpenSubKey("SOFTWARE\\Google", true);
 
             if (rkey != null)
             {
