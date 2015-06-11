@@ -112,7 +112,7 @@ function create_customize_mount_dp()
 {
 	$parts = get-partition
 	
-	mkdir $customize_mp -ErrorAction Ignore
+	mkdir -Path $customize_mp -Force |Out-Null
 	
 	foreach ($p in $parts)
 	{
@@ -153,7 +153,7 @@ function create_syspart_mount_dp()
 {
 	$parts = get-partition
 	
-	mkdir $syspart_mp -ErrorAction Ignore
+	mkdir -Path $syspart_mp -Force |Out-Path
 	
 	foreach ($p in $parts)
 	{
@@ -190,4 +190,4 @@ function create_syspart_mount_dp()
 	}
 }
 
-mkdir $outpath -ErrorAction Ignore
+mkdir -Path $outpath -Force |Out-Null 
