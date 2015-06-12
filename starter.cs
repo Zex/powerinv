@@ -69,6 +69,19 @@ namespace utilities
  *        }
  *    }
  */
+    [DllImport("kernel32.dll")]
+    static extern int GetLastError();
+
+    // https://msdn.microsoft.com/en-us/library/windows/desktop/aa363866%28v=vs.85%29.aspx
+    enum SymLnk
+    {
+        SYMBOLIC_LINK_FLAG_FILE = 0,
+        SYMBOLIC_LINK_FLAG_DIRECTORY = 1
+    };
+        
+    [DllImport("kernel32.dll")]
+    static extern bool CreateSymbolicLink(
+    string lpSymlinkFileName, string lpTargetFileName, SymLnk dwFlags);
     
     public class DeviceIOCtrl
     {
@@ -440,5 +453,8 @@ namespace utilities
                 }
             }
         }
+
     }
 }
+
+
