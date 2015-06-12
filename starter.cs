@@ -91,7 +91,7 @@ namespace utilities
             public int part_nr;
         }
 
-        static void mksymlnk(string globalroot_path, string access_path, SymLnkType ty)
+        static void mksymlnk(string globalroot_path, string access_path, SymLnk ty)
         {
             bool ret;
 
