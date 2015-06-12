@@ -69,19 +69,45 @@ namespace utilities
  *        }
  *    }
  */
-    [DllImport("kernel32.dll")]
-    static extern int GetLastError();
-
-    // https://msdn.microsoft.com/en-us/library/windows/desktop/aa363866%28v=vs.85%29.aspx
-    enum SymLnk
+    public class SymLnk
     {
-        SYMBOLIC_LINK_FLAG_FILE = 0,
-        SYMBOLIC_LINK_FLAG_DIRECTORY = 1
-    };
+        [DllImport("kernel32.dll")]
+        static extern int GetLastError();
+    
+        // https://msdn.microsoft.com/en-us/library/windows/desktop/aa363866%28v=vs.85%29.aspx
+        enum SymLnk
+        {
+            SYMBOLIC_LINK_FLAG_FILE = 0,
+            SYMBOLIC_LINK_FLAG_DIRECTORY = 1
+        };
+            
+        [DllImport("kernel32.dll")]
+        static extern bool CreateSymbolicLink(
+        string lpSymlinkFileName, string lpTargetFileName, SymLnk dwFlags);
+
+        public struct PartPosition
+        {
+            public int disk_nr;
+            public int part_nr;
+        }
+
+        static void mksymlnk(string globalroot_path, string access_path, SymLnkType ty)
+        {
+            bool ret;
+
+            if (false == (ret = CreateSymbolicLink(access_path, globalroot_path, ty)))
+            {
+                throw new Exception("CreateSymbolicLink " + globalroot_path + " @ " + access_path + " fail, errno=" + GetLastError());
+            }
+        }
         
-    [DllImport("kernel32.dll")]
-    static extern bool CreateSymbolicLink(
-    string lpSymlinkFileName, string lpTargetFileName, SymLnk dwFlags);
+        static void mksymlnk(PartPosition pos, string access_path)
+        {
+            string globalroot_path = string.Format(@"\\?\GLOBALROOT\Device\Harddisk{0}\partition{1}\", pos.disk_nr, pos.part_nr);
+
+            mksymlnk(globalroot_path, access_path, SymLnkType.SYMBOLIC_LINK_FLAG_DIRECTORY);
+        }
+    }
     
     public class DeviceIOCtrl
     {
