@@ -484,10 +484,27 @@ namespace utilities
 
 
     /**
+     * \code
+     *
      * public class BcdBrocker
      * {
+     *      public BcdBrocker
+     *      {
+            string method_name = "OpenStore";
+            _bcd = new ManagementClass("\\\\.\\Root\\WMI:BcdStore");
+
+            var inParams = _bcd.GetMethodParameters(method_name);
+
+            inParams["File"] = store_path;
+
+            var outParams = _bcd.InvokeMethod(method_name, inParams, null);
+            _store = outParams.GetPropertyValue("Store") as BcdStore;
+            _store.FilePath = new string(store_path);
+
+            Console.WriteLine("{0} ret: {1}", method_name, Convert.ToBoolean(outParams["ReturnValue"]));            
+            }
      * }
-     *
+     * \endcode
      */
 }
 
