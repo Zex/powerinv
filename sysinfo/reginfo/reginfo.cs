@@ -37,7 +37,7 @@ namespace sysinfo
 
     class utils
     {
-        public void dell_mount(string label, string mount_base)
+        public void mount(string label, string mount_base)
         {
             System.Management.Instrumentation.WmiConfigurationAttribute
         }

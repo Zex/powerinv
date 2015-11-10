@@ -45,7 +45,7 @@ function find_avail_space()
 	}
 }
 
-# -1, the disk doesn't support Excalibur
+# -1, the disk doesn't supported
 # 1, the disk doesn't have enough free space for customize, need shrink from other partition 
 # 0, the disk has enough free space for customize
 function disk_check($disk_nr)
